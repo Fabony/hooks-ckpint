@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import MovieList from './Components/Movielist'
 import Filter from './Components/Filter'
 import './App.css'
+import {Routes, Route }  from 'react-router-dom'
+import  Video from './Components/Video'
+
+
 
 const App = () => {
   const [movies, setMovies] = useState([
@@ -10,6 +14,7 @@ const App = () => {
       description: 'Mortal Engines has no shortage of eye-catching special effects,but lacks enough high-octane narrative fuel to give this futuristic fantasy sufficient cinematic combustion.',
       posterURL: 'https://flxt.tmsimg.com/assets/p13572826_v_h8_aa.jpg',
       rating: 4.5,
+      trailer: ''
     },
 
     {
@@ -24,6 +29,7 @@ const App = () => {
       description: "Jaime Reyes suddenly finds himself in possession of an ancient relic of alien biotechnology called the Scarab. When the Scarab chooses Jaime to be its symbiotic host, he's bestowed with an incredible suit of armor that's capable of extraordinary and unpredictable powers",
       posterURL: 'https://resizing.flixster.com/LgqqVAIyA2K_E86lNuD8Uu_02yw=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzL2ZlNmZjZjM3LTg4ODctNDFiYi04NjZjLTIyOGViYjU1ZDU4Mi5qcGc=',
       rating: 4.9,
+
     },
 
     {
@@ -63,7 +69,11 @@ const App = () => {
     <div className="app">
       <h1 className='head'>Movie Catalog</h1>
       <Filter onFilter={filterMovies} />
-      <MovieList movies={filteredMovies} />
+      <Routes>
+        <Route path ='/' element={<MovieList movies={filteredMovies}/>}/>
+         <Route path='/Tpage' element={<Video  />} />
+        
+      </Routes>
       <button onClick={() => addMovie({ title: 'New Movie', description: 'New Description', posterURL: 'newPoster.jpg', rating: 3.0 })}>Add Movie</button>
     </div>
   );
